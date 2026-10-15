@@ -1,0 +1,1 @@
+{"version":3,"file":"too-many-requests.exception.js","sourceRoot":"","sources":["../../../src/common/exceptions/too-many-requests.exception.ts"],"names":[],"mappings":";;;AAAA,2CAA2D;AAE3D,MAAa,wBAAyB,SAAQ,sBAAa;IACzD,YAAY,UAAkB,yBAAyB;QACrD,KAAK,CAAC,OAAO,EAAE,mBAAU,CAAC,iBAAiB,CAAC,CAAC;IAC/C,CAAC;CACF;AAJD,4DAIC"}

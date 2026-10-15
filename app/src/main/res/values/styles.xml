@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- =================================================================== -->
+    <!-- ТИПОГРАФИКА (Стили текста: Антиква для заголовков, Гротеск для текста) -->
+    <!-- =================================================================== -->
+
+    <!-- Дисплейные крупные заголовки (Антиква / Serif) -->
+    <style name="TextAppearance.RawFree.Display" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="android:textSize">@dimen/text_size_display</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">serif</item>
+    </style>
+
+    <!-- Главные заголовки экранов (Антиква / Serif) -->
+    <style name="TextAppearance.RawFree.Headline" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textSize">@dimen/text_size_headline</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">serif</item>
+    </style>
+
+    <!-- Подзаголовки блоков (Антиква / Serif) -->
+    <style name="TextAppearance.RawFree.Title" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">serif</item>
+    </style>
+
+    <!-- Подзаголовки средние (Антиква / Serif) -->
+    <style name="TextAppearance.RawFree.Subhead" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">@dimen/text_size_subhead</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">serif</item>
+    </style>
+
+    <!-- Основной текст (Гротеск / Sans-Serif) -->
+    <style name="TextAppearance.RawFree.Body" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- Мелкий основной текст (Гротеск / Sans-Serif) -->
+    <style name="TextAppearance.RawFree.BodySmall" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">@dimen/text_size_body_small</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- Подписи и подсказки (Гротеск / Sans-Serif) -->
+    <style name="TextAppearance.RawFree.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">@dimen/text_size_caption</item>
+        <item name="android:textColor">@color/text_tertiary</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- =================================================================== -->
+    <!-- СТИЛИ КОМПОНЕНТОВ UI -->
+    <!-- =================================================================== -->
+
+    <!-- Основная кнопка (Primary Accent Button) -->
+    <style name="Widget.RawFree.Button.Primary" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/accent</item>
+        <item name="android:textColor">@color/text_on_accent</item>
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="cornerSize">@dimen/corner_radius_medium</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+    </style>
+
+    <!-- Вторичная кнопка (Secondary Tonal Button) -->
+    <style name="Widget.RawFree.Button.Secondary" parent="Widget.Material3.Button.TonalButton">
+        <item name="backgroundTint">@color/surface_raised</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="cornerSize">@dimen/corner_radius_medium</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+    </style>
+
+    <!-- Текстовое поле ввода (Outlined Input Box) -->
+    <style name="Widget.RawFree.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/surface</item>
+        <item name="boxStrokeColor">@color/accent</item>
+        <item name="boxCornerRadiusTopStart">@dimen/corner_radius_small</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/corner_radius_small</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/corner_radius_small</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/corner_radius_small</item>
+        <item name="hintTextColor">@color/text_secondary</item>
+    </style>
+
+    <!-- Карточка пользователя / плашка -->
+    <style name="Widget.RawFree.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/bg_secondary</item>
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="cardElevation">@dimen/elevation_medium</item>
+        <item name="strokeColor">@color/divider</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <!-- Чипы фильтров / теги -->
+    <style name="Widget.RawFree.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/surface_raised</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="chipCornerRadius">@dimen/corner_radius_pill</item>
+        <item name="chipMinHeight">@dimen/chip_height</item>
+        <item name="chipIconTint">@color/accent</item>
+    </style>
+
+</resources>

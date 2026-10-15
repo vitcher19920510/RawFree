@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Базовая тема приложения (Тёмная) -->
+    <style name="Theme.RawFree" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Цветовая палитра темы -->
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorOnPrimary">@color/text_on_accent</item>
+        <item name="colorSecondary">@color/accent_subtle</item>
+        <item name="colorOnSecondary">@color/text_primary</item>
+        <item name="android:colorBackground">@color/bg_primary</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+
+        <!-- Системные бары -->
+        <item name="android:statusBarColor">@color/bg_primary</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/bg_primary</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+</resources>

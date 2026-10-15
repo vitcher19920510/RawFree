@@ -1,0 +1,127 @@
+﻿services:
+  # Основная база данных PostgreSQL 16 [ПРЕДПОЛОЖЕНИЕ — уточнить в документации]
+  postgres:
+    image: postgres:16-alpine
+    container_name: rawfree_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-rawfree}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+      POSTGRES_DB: ${POSTGRES_DB:-rawfree_db}
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-rawfree} -d ${POSTGRES_DB:-rawfree_db} -h localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # In-memory кэш и сессии Redis 7 [ПРЕДПОЛОЖЕНИЕ — уточнить в документации]
+  redis:
+    image: redis:7-alpine
+    container_name: rawfree_redis
+    restart: always
+    command: redis-server --requirepass ${REDIS_PASSWORD:?REDIS_PASSWORD is required}
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - redisdata:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Бэкенд API на NestJS
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rawfree_api
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: "postgresql://${POSTGRES_USER:-rawfree}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}@postgres:5432/${POSTGRES_DB:-rawfree_db}?schema=public"
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?REDIS_PASSWORD is required}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Nginx Reverse Proxy c TLS Let's Encrypt [ПРЕДПОЛОЖЕНИЕ — уточнить в документации]
+  nginx:
+    image: nginx:alpine
+    container_name: rawfree_nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/certbot/conf:/etc/letsencrypt
+      - ./nginx/certbot/www:/var/www/certbot
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    depends_on:
+      - api
+
+  # Сервис вызова и ротации TLS-сертификатов Certbot [ПРЕДПОЛОЖЕНИЕ — уточнить в документации]
+  certbot:
+    image: certbot/certbot:v2.11.0
+    container_name: rawfree_certbot
+    restart: always
+    volumes:
+      - ./nginx/certbot/conf:/etc/letsencrypt
+      - ./nginx/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  # ===================================================================
+  # Включить в Блоке 10 вместе с сервисом admin
+  # ===================================================================
+  # admin:
+  #   build:
+  #     context: ../admin
+  #     dockerfile: Dockerfile
+  #   container_name: rawfree_admin
+  #   restart: always
+  #   ports:
+  #     - "3001:3001"
+  #   environment:
+  #     DATABASE_URL: "postgresql://${POSTGRES_USER:-rawfree}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-rawfree_db}?schema=public"
+  #   depends_on:
+  #     - postgres
+
+volumes:
+  pgdata:
+  redisdata:
+
+
+
+

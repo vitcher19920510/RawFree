@@ -1,0 +1,326 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ===================================================================
+// ТАБЛИЦЫ ПЕРВОЙ ВЕРСИИ (v1)
+// ===================================================================
+
+// 1. Пользователи
+model User {
+  id              String    @id @default(uuid())
+  email           String?   @unique
+  phone           String?   @unique
+  passwordHash    String?   @map("password_hash")
+  emailVerifiedAt DateTime? @map("email_verified_at")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  is18            Boolean   @default(true) @map("is_18")
+  deletedAt       DateTime? @map("deleted_at")
+
+  profile       Profile?
+  photos        Photo[]
+  likesSent     Like[]         @relation("LikesSent")
+  likesReceived Like[]         @relation("LikesReceived")
+  skipsSent     Skip[]         @relation("SkipsSent")
+  skipsRecv     Skip[]         @relation("SkipsRecv")
+  matchesA      Match[]        @relation("MatchUserA")
+  matchesB      Match[]        @relation("MatchUserB")
+  subscriptions Subscription[]
+  messages      Message[]      @relation("MessagesSent")
+  reportsSent   Report[]       @relation("ReportsSent")
+  reportsRecv   Report[]       @relation("ReportsRecv")
+  blockedSent   Blocked[]      @relation("Blocker")
+  blockedBy     Blocked[]      @relation("BlockedOne")
+  interests     Interest[]
+  incognito     Incognito?
+
+  @@map("users")
+}
+
+// 2. Профили
+model Profile {
+  userId             String   @id @map("user_id")
+  name               String
+  age                Int
+  gender             String
+  lookingFor         String   @map("looking_for")
+  city               String
+  geoLat             Float?   @map("geo_lat")
+  geoLon             Float?   @map("geo_lon")
+  height             Int?
+  bio                String   @default("")
+  hiddenFromFeed     Boolean  @default(false) @map("hidden_from_feed")
+  verificationStatus String   @default("NONE") @map("verification_status")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([gender, age])
+  @@index([city])
+  @@index([verificationStatus])
+  @@map("profiles")
+}
+
+// 3. Фотографии
+model Photo {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  url       String
+  order     Int      @map("order")
+  isMain    Boolean  @default(false) @map("is_main")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, order])
+  @@map("photos")
+}
+
+// 4. Лайки
+model Like {
+  id        String   @id @default(uuid())
+  fromUser  String   @map("from_user")
+  toUser    String   @map("to_user")
+  isSuper   Boolean  @default(false) @map("is_super")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  sender   User @relation("LikesSent", fields: [fromUser], references: [id], onDelete: Cascade)
+  receiver User @relation("LikesReceived", fields: [toUser], references: [id], onDelete: Cascade)
+
+  @@unique([fromUser, toUser])
+  @@index([fromUser])
+  @@index([toUser])
+  @@map("likes")
+}
+
+// 5. Пропуски (Скипы)
+model Skip {
+  id        String   @id @default(uuid())
+  fromUser  String   @map("from_user")
+  toUser    String   @map("to_user")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  sender   User @relation("SkipsSent", fields: [fromUser], references: [id], onDelete: Cascade)
+  receiver User @relation("SkipsRecv", fields: [toUser], references: [id], onDelete: Cascade)
+
+  @@unique([fromUser, toUser])
+  @@index([fromUser])
+  @@index([toUser])
+  @@map("skips")
+}
+
+// 6. Мэтчи
+model Match {
+  id        String   @id @default(uuid())
+  userA     String   @map("user_a")
+  userB     String   @map("user_b")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  userARel User  @relation("MatchUserA", fields: [userA], references: [id], onDelete: Cascade)
+  userBRel User  @relation("MatchUserB", fields: [userB], references: [id], onDelete: Cascade)
+  chat     Chat?
+
+  @@unique([userA, userB])
+  @@index([userA])
+  @@index([userB])
+  @@map("matches")
+}
+
+// 7. Чаты
+model Chat {
+  id            String    @id @default(uuid())
+  matchId       String    @unique @map("match_id")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  lastMessageAt DateTime? @map("last_message_at")
+
+  match    Match     @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  messages Message[]
+
+  @@map("chats")
+}
+
+// 8. Сообщения
+model Message {
+  id         String    @id @default(uuid())
+  chatId     String    @map("chat_id")
+  sender     String
+  text       String?
+  mediaType  String?   @default("text") @map("media_type")
+  mediaUrl   String?   @map("media_url")
+  posterUrl  String?   @map("poster_url")
+  durationMs Int?      @map("duration_ms")
+  width      Int?
+  height     Int?
+  sizeBytes  Int?      @map("size_bytes")
+  status     String    @default("sent")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  readAt     DateTime? @map("read_at")
+  viewedAt   DateTime? @map("viewed_at")
+
+  chat      Chat @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  senderRel User @relation("MessagesSent", fields: [sender], references: [id], onDelete: Cascade)
+
+  @@index([chatId, createdAt])
+  @@map("messages")
+}
+
+// 9. Подписки
+model Subscription {
+  id            String   @id @default(uuid())
+  userId        String   @map("user_id")
+  plan          String
+  priceCents    Int      @map("price_cents")
+  currency      String   @default("RUB")
+  startedAt     DateTime @default(now()) @map("started_at")
+  expiresAt     DateTime @map("expires_at")
+  autoRenew     Boolean  @default(true) @map("auto_renew")
+  platform      String   @default("RUSTORE")
+  purchaseToken String   @map("purchase_token")
+  status        String   @default("ACTIVE")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("subscriptions")
+}
+
+// ===================================================================
+// СПРАВОЧНИКИ И СЛУЖЕБНЫЕ ТАБЛИЦЫ (v1)
+// ===================================================================
+
+model Blocked {
+  id            String   @id @default(uuid())
+  userId        String   @map("user_id")
+  blockedUserId String   @map("blocked_user_id")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  user        User @relation("Blocker", fields: [userId], references: [id], onDelete: Cascade)
+  blockedUser User @relation("BlockedOne", fields: [blockedUserId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, blockedUserId])
+  @@map("blocked")
+}
+
+model Interest {
+  id     String @id @default(uuid())
+  userId String @map("user_id")
+  tag    String
+  type   String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("interests")
+}
+
+model Incognito {
+  id     String   @id @default(uuid())
+  userId String   @unique @map("user_id")
+  until  DateTime
+  mode   String   @default("FULL")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("incognito")
+}
+
+model Report {
+  id        String   @id @default(uuid())
+  fromUser  String   @map("from_user")
+  toUser    String   @map("to_user")
+  reason    String
+  comment   String   @default("")
+  createdAt DateTime @default(now()) @map("created_at")
+  status    String   @default("PENDING")
+
+  reporter User @relation("ReportsSent", fields: [fromUser], references: [id], onDelete: Cascade)
+  reported User @relation("ReportsRecv", fields: [toUser], references: [id], onDelete: Cascade)
+
+  @@map("reports")
+}
+
+model LegalDoc {
+  id        String   @id @default(uuid())
+  code      String   @unique
+  title     String
+  body      String
+  version   String
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("legal_docs")
+}
+
+// ===================================================================
+// ТАБЛИЦЫ АДМИН-ПАНЕЛИ (Блок 10)
+// ===================================================================
+
+model AdminUser {
+  id             String    @id @default(uuid())
+  login          String    @unique
+  passwordHash   String    @map("password_hash")
+  role           String    @default("SUPPORT")
+  isActive       Boolean   @default(true) @map("is_active")
+  totpSecret     String?   @map("totp_secret")
+  failedAttempts Int       @default(0) @map("failed_attempts")
+  lockedUntil    DateTime? @map("locked_until")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  lastLoginAt    DateTime? @map("last_login_at")
+
+  audits AdminAudit[]
+
+  @@map("admin_users")
+}
+
+model AdminAudit {
+  id         String   @id @default(uuid())
+  adminId    String   @map("admin_id")
+  action     String
+  targetType String   @map("target_type")
+  targetId   String   @map("target_id")
+  reason     String?
+  ip         String?
+  userAgent  String?  @map("user_agent")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  admin AdminUser @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId, createdAt])
+  @@map("admin_audit")
+}
+
+model ModerationQueue {
+  id          String    @id @default(uuid())
+  contentType String    @map("content_type")
+  contentId   String    @map("content_id")
+  userId      String    @map("user_id")
+  source      String    @default("REPORT")
+  status      String    @default("PENDING")
+  assignedTo  String?   @map("assigned_to")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  decidedAt   DateTime? @map("decided_at")
+  decision    String?
+  reason      String?
+
+  @@index([status, createdAt])
+  @@map("moderation_queue")
+}
+
+model ClientError {
+  id          String   @id @default(uuid())
+  userId      String?  @map("user_id")
+  screen      String
+  description String
+  appVersion  String   @map("app_version")
+  device      String
+  osVersion   String   @map("os_version")
+  createdAt   DateTime @default(now()) @map("created_at")
+  repeats     Int      @default(1)
+
+  @@index([createdAt])
+  @@map("client_errors")
+}

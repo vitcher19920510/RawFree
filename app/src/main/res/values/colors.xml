@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Базовые цвета -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Фон и поверхности (Светлая тема) -->
+    <color name="bg_primary">#F8F9FA</color>
+    <color name="bg_secondary">#FFFFFF</color>
+    <color name="surface">#F1F3F5</color>
+    <color name="surface_raised">#E9ECEF</color>
+    <color name="divider">#DEE2E6</color>
+
+    <!-- Текст (Светлая тема) -->
+    <color name="text_primary">#111827</color>
+    <color name="text_secondary">#4B5563</color>
+    <color name="text_tertiary">#9CA3AF</color>
+    <color name="text_on_accent">#FFFFFF</color>
+
+    <!-- Акцент -->
+    <color name="accent">#FF3B6B</color>
+    <color name="accent_pressed">#D92652</color>
+    <color name="accent_subtle">#FFEBF0</color>
+
+    <!-- Состояния -->
+    <color name="success">#10B981</color>
+    <color name="error">#EF4444</color>
+    <color name="warning">#F59E0B</color>
+    <color name="info">#3B82F6</color>
+
+    <!-- Особые -->
+    <color name="match_glow">#66FF3B6B</color>
+    <color name="unread_dot">#FF3B6B</color>
+    <color name="blur_overlay">#B0FFFFFF</color>
+
+    <!-- Градиенты -->
+    <color name="gradient_paywall_start">#FF3B6B</color>
+    <color name="gradient_paywall_end">#8A2387</color>
+</resources>

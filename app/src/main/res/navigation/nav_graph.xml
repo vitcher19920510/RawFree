@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_splash">
+
+    <!-- 1. Splash -->
+    <fragment
+        android:id="@+id/fragment_splash"
+        android:name="online.rawfree.app.ui.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_onboardingFragment"
+            app:destination="@id/fragment_onboarding"
+            app:popUpTo="@id/fragment_splash"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_mainNearbyFragment"
+            app:destination="@id/fragment_main_nearby"
+            app:popUpTo="@id/fragment_splash"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_authFragment"
+            app:destination="@id/fragment_auth"
+            app:popUpTo="@id/fragment_splash"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- 2. Онбординг -->
+    <fragment
+        android:id="@+id/fragment_onboarding"
+        android:name="online.rawfree.app.ui.onboarding.OnboardingFragment"
+        android:label="OnboardingFragment"
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onboardingFragment_to_authFragment"
+            app:destination="@id/fragment_auth"
+            app:popUpTo="@id/fragment_onboarding"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- 3. Регистрация / Вход -->
+    <fragment
+        android:id="@+id/fragment_auth"
+        android:name="online.rawfree.app.ui.auth.AuthFragment"
+        android:label="AuthFragment"
+        tools:layout="@layout/fragment_auth">
+        <action
+            android:id="@+id/action_authFragment_to_profileCreateFragment"
+            app:destination="@id/fragment_profile_create"
+            app:popUpTo="@id/fragment_auth"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_authFragment_to_mainNearbyFragment"
+            app:destination="@id/fragment_main_nearby"
+            app:popUpTo="@id/fragment_auth"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_authFragment_to_legalDocumentFragment"
+            app:destination="@id/fragment_legal_document" />
+    </fragment>
+
+    <!-- 4. Создание профиля -->
+    <fragment
+        android:id="@+id/fragment_profile_create"
+        android:name="online.rawfree.app.ui.profile.ProfileCreateFragment"
+        android:label="ProfileCreateFragment"
+        tools:layout="@layout/fragment_profile_create">
+        <action
+            android:id="@+id/action_profileCreateFragment_to_mainNearbyFragment"
+            app:destination="@id/fragment_main_nearby"
+            app:popUpTo="@id/fragment_profile_create"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- 5. Рядом (стек карточек) -->
+    <fragment
+        android:id="@+id/fragment_main_nearby"
+        android:name="online.rawfree.app.ui.nearby.MainNearbyFragment"
+        android:label="MainNearbyFragment"
+        tools:layout="@layout/fragment_main_nearby">
+        <action
+            android:id="@+id/action_mainNearbyFragment_to_userProfileFragment"
+            app:destination="@id/fragment_user_profile" />
+        <action
+            android:id="@+id/action_mainNearbyFragment_to_matchesFragment"
+            app:destination="@id/fragment_matches" />
+    </fragment>
+
+    <!-- 6. Мэтчи -->
+    <fragment
+        android:id="@+id/fragment_matches"
+        android:name="online.rawfree.app.ui.matches.MatchesFragment"
+        android:label="MatchesFragment"
+        tools:layout="@layout/fragment_matches">
+        <action
+            android:id="@+id/action_matchesFragment_to_chatDetailFragment"
+            app:destination="@id/fragment_chat_detail" />
+        <action
+            android:id="@+id/action_matchesFragment_to_mainNearbyFragment"
+            app:destination="@id/fragment_main_nearby" />
+    </fragment>
+
+    <!-- 7. Чаты (список) -->
+    <fragment
+        android:id="@+id/fragment_chats_list"
+        android:name="online.rawfree.app.ui.chats.ChatsListFragment"
+        android:label="ChatsListFragment"
+        tools:layout="@layout/fragment_chats_list">
+        <action
+            android:id="@+id/action_chatsListFragment_to_chatDetailFragment"
+            app:destination="@id/fragment_chat_detail" />
+    </fragment>
+
+    <!-- 8. Чат (переписка) -->
+    <fragment
+        android:id="@+id/fragment_chat_detail"
+        android:name="online.rawfree.app.ui.chats.ChatDetailFragment"
+        android:label="ChatDetailFragment"
+        tools:layout="@layout/fragment_chat_detail">
+        <action
+            android:id="@+id/action_chatDetailFragment_to_userProfileFragment"
+            app:destination="@id/fragment_user_profile" />
+        <action
+            android:id="@+id/action_chatDetailFragment_to_reportFragment"
+            app:destination="@id/fragment_report" />
+    </fragment>
+
+    <!-- 9. Мой профиль -->
+    <fragment
+        android:id="@+id/fragment_my_profile"
+        android:name="online.rawfree.app.ui.profile.MyProfileFragment"
+        android:label="MyProfileFragment"
+        tools:layout="@layout/fragment_my_profile">
+        <action
+            android:id="@+id/action_myProfileFragment_to_profileCreateFragment"
+            app:destination="@id/fragment_profile_create" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_settingsFragment"
+            app:destination="@id/fragment_settings" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_paywallFragment"
+            app:destination="@id/fragment_paywall" />
+    </fragment>
+
+    <!-- 10. Профиль другого -->
+    <fragment
+        android:id="@+id/fragment_user_profile"
+        android:name="online.rawfree.app.ui.profile.UserProfileFragment"
+        android:label="UserProfileFragment"
+        tools:layout="@layout/fragment_user_profile">
+        <action
+            android:id="@+id/action_userProfileFragment_to_reportFragment"
+            app:destination="@id/fragment_report" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_chatDetailFragment"
+            app:destination="@id/fragment_chat_detail" />
+    </fragment>
+
+    <!-- 11. Настройки -->
+    <fragment
+        android:id="@+id/fragment_settings"
+        android:name="online.rawfree.app.ui.settings.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_legalDocumentFragment"
+            app:destination="@id/fragment_legal_document" />
+        <action
+            android:id="@+id/action_settingsFragment_to_adminInAppFragment"
+            app:destination="@id/fragment_admin_in_app" />
+        <action
+            android:id="@+id/action_settingsFragment_to_myProfileFragment"
+            app:destination="@id/fragment_my_profile" />
+        <action
+            android:id="@+id/action_settingsFragment_to_paywallFragment"
+            app:destination="@id/fragment_paywall" />
+    </fragment>
+
+    <!-- 12. Подписка (Paywall) -->
+    <fragment
+        android:id="@+id/fragment_paywall"
+        android:name="online.rawfree.app.ui.paywall.PaywallFragment"
+        android:label="PaywallFragment"
+        tools:layout="@layout/fragment_paywall">
+        <action
+            android:id="@+id/action_paywallFragment_to_mainNearbyFragment"
+            app:destination="@id/fragment_main_nearby" />
+        <action
+            android:id="@+id/action_paywallFragment_to_legalDocumentFragment"
+            app:destination="@id/fragment_legal_document" />
+    </fragment>
+
+    <!-- 13. Жалоба -->
+    <fragment
+        android:id="@+id/fragment_report"
+        android:name="online.rawfree.app.ui.report.ReportFragment"
+        android:label="ReportFragment"
+        tools:layout="@layout/fragment_report" />
+
+    <!-- 14. Юр. документы -->
+    <fragment
+        android:id="@+id/fragment_legal_document"
+        android:name="online.rawfree.app.ui.legal.LegalDocumentFragment"
+        android:label="LegalDocumentFragment"
+        tools:layout="@layout/fragment_legal_document" />
+
+    <!-- 15. Админка (встроенная) -->
+    <fragment
+        android:id="@+id/fragment_admin_in_app"
+        android:name="online.rawfree.app.ui.admin.AdminInAppFragment"
+        android:label="AdminInAppFragment"
+        tools:layout="@layout/fragment_admin_in_app" />
+
+</navigation>

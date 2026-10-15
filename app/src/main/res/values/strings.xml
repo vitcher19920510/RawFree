@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">RawFree</string>
+    <string name="nav_nearby">Рядом</string>
+    <string name="nav_matches">Мэтчи</string>
+    <string name="nav_chats">Чаты</string>
+    <string name="nav_profile">Профиль</string>
+    <string name="speed_1x">1x</string>
+    <string name="speed_2x">2x</string>
+</resources>
