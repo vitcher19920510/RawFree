@@ -21,3 +21,4 @@ backend/dist/
 .idea/
 .gradle/
 **/build/
+backend/nginx/certbot/
