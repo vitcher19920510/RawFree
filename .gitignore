@@ -13,3 +13,11 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# secrets and build artifacts
+.env
+node_modules/
+backend/dist/
+.idea/
+.gradle/
+**/build/

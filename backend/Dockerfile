@@ -1,5 +1,6 @@
 # Stage 1: Build stage (node 20-slim) [ПРЕДПОЛОЖЕНИЕ — уточнить в документации]
 FROM node:20-slim AS builder
+RUN apt-get update -y && apt-get install -y --no-install-recommends openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
 
@@ -15,6 +16,7 @@ RUN npm run build
 
 # Stage 2: Runtime stage (node 20-slim) [ПРЕДПОЛОЖЕНИЕ — уточнить в документации]
 FROM node:20-slim AS runner
+RUN apt-get update -y && apt-get install -y --no-install-recommends openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
 

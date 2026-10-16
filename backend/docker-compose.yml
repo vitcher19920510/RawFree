@@ -1,4 +1,4 @@
-﻿services:
+services:
   # Основная база данных PostgreSQL 16 [ПРЕДПОЛОЖЕНИЕ — уточнить в документации]
   postgres:
     image: postgres:16-alpine
@@ -52,7 +52,7 @@
     container_name: rawfree_api
     restart: always
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     environment:
       NODE_ENV: production
       PORT: 3000
@@ -60,7 +60,9 @@
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_PASSWORD: ${REDIS_PASSWORD:?REDIS_PASSWORD is required}
+      REDIS_URL: "redis://:${REDIS_PASSWORD}@redis:6379"
       JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:?JWT_REFRESH_SECRET is required}
     logging:
       driver: "json-file"
       options:
