@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="chat"
+            type="online.rawfree.app.data.remote.dto.ChatResponse" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:contentDescription="@string/app_name" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{chat.peerUser.name}"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{chat.lastMessage != null ? chat.lastMessage.text : `Нет сообщений`}"
+                android:textSize="14sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:maxLength="50" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(chat.unreadCount)}"
+            android:textSize="12sp"
+            android:textColor="?attr/colorPrimary"
+            android:background="@android:drawable/dialog_holo_light_frame"
+            android:padding="4dp"
+            android:visibility="@{chat.unreadCount > 0 ? View.VISIBLE : View.GONE}" />
+
+    </LinearLayout>
+
+</layout>

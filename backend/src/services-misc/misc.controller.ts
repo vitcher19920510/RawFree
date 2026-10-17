@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 import { Public } from '../common/decorators/public.decorator';
+import { RequireSubscription } from '../common/decorators/require-subscription.decorator';
 import { MiscService } from './misc.service';
 import { SendReportDto } from './dto/report.dto';
 import { BlockUserDto } from './dto/blocked.dto';
@@ -17,12 +18,14 @@ export class MiscController {
   constructor(private readonly miscService: MiscService) {}
 
   @Post('incognito')
+  @RequireSubscription()
   @HttpCode(HttpStatus.OK)
   async enableIncognito(@Request() req: any) {
     return this.miscService.enableIncognito(req.user.sub);
   }
 
   @Delete('incognito')
+  @RequireSubscription()
   @HttpCode(HttpStatus.OK)
   async disableIncognito(@Request() req: any) {
     return this.miscService.disableIncognito(req.user.sub);

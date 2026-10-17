@@ -9,7 +9,7 @@ export class ChatsService {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  private async verifyChatAccess(userId: string, chatId: string) {
+  async verifyChatAccess(userId: string, chatId: string) {
     const chat = await this.prisma.chat.findUnique({
       where: { id: chatId },
       include: { match: true },

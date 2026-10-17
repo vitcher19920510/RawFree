@@ -1,16 +1,33 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { VerifyPurchaseDto } from './dto/verify-purchase.dto';
+import { RuStoreValidationService } from '../subservices/rustore-validation.service';
 
-const PLAN_CATALOG: Record<string, { days: number; priceCents: number }> = {
-  premium_7: { days: 7, priceCents: 39900 },
-  premium_30: { days: 30, priceCents: 99900 },
-  premium_365: { days: 365, priceCents: 499900 },
+const PLAN_CATALOG: Record<string, { days: number; priceCents: number; savingsPercent: number; savingsLabel: string }> = {
+  premium_7: { days: 7, priceCents: 39900, savingsPercent: 0, savingsLabel: '' },
+  premium_30: { days: 30, priceCents: 136800, savingsPercent: 20, savingsLabel: 'Выгода 20%' },
+  premium_365: { days: 365, priceCents: 1664400, savingsPercent: 20, savingsLabel: 'Выгода 20%' },
 };
 
 @Injectable()
 export class SubscriptionsService {
-  constructor(private readonly prisma: PrismaService) {}
+  private readonly logger = new Logger(SubscriptionsService.name);
+
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly rustoreValidation: RuStoreValidationService,
+  ) {}
+
+  getPlans() {
+    return Object.entries(PLAN_CATALOG).map(([id, plan]) => ({
+      id,
+      title: id === 'premium_7' ? 'Премиум — 7 дней' : id === 'premium_30' ? 'Премиум — 30 дней' : 'Премиум — 1 год',
+      priceCents: plan.priceCents,
+      periodDays: plan.days,
+      savingsPercent: plan.savingsPercent,
+      savingsLabel: plan.savingsLabel,
+    }));
+  }
 
   async hasActive(userId: string): Promise<boolean> {
     const sub = await this.prisma.subscription.findFirst({
@@ -38,7 +55,22 @@ export class SubscriptionsService {
       return { status: existingSub.status, expiresAt: existingSub.expiresAt };
     }
 
-    // TODO: серверная валидация RuStore API v4 перед созданием подписки
+    // Валидация через RuStore API v4
+    if (dto.platform === 'RUSTORE') {
+      const appId = process.env.RUSTORE_APP_ID;
+      const developerToken = process.env.RUSTORE_DEVELOPER_TOKEN;
+
+      if (!appId || !developerToken) {
+        this.logger.warn('RUSTORE_APP_ID или RUSTORE_DEVELOPER_TOKEN не настроены — пропускаю валидацию');
+      } else {
+        try {
+          const ruStoreData = await this.rustoreValidation.validatePurchase(appId, developerToken, dto.purchaseToken);
+          this.logger.log(`RuStore покупка подтверждена: orderId=${ruStoreData.orderId}, productId=${ruStoreData.productId}`);
+        } catch (error) {
+          throw new BadRequestException('Не удалось подтвердить покупку в RuStore');
+        }
+      }
+    }
 
     return this.prisma.$transaction(async (tx) => {
       await tx.subscription.updateMany({

@@ -6,4 +6,38 @@
     <string name="nav_profile">Профиль</string>
     <string name="speed_1x">1x</string>
     <string name="speed_2x">2x</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Знакомься рядом</string>
+    <string name="onboarding_desc_1">Находи людей в вашем городе с помощью карты и ленты</string>
+    <string name="onboarding_title_2">Сообщения исчезают</string>
+    <string name="onboarding_desc_2">Ваши переписки видят только участники чата</string>
+    <string name="onboarding_title_3">Приватность прежде всего</string>
+    <string name="onboarding_desc_3">Инкогнито, блокировка, контроль данных</string>
+    <string name="onboarding_next">Далее</string>
+    <string name="onboarding_skip">Пропустить</string>
+
+    <!-- Auth -->
+    <string name="auth_login_title">Вход</string>
+    <string name="auth_register_title">Регистрация</string>
+    <string name="auth_email_hint">Email</string>
+    <string name="auth_password_hint">Пароль</string>
+    <string name="auth_login_btn">Войти</string>
+    <string name="auth_register_btn">Зарегистрироваться</string>
+    <string name="auth_forgot_password">Забыли пароль?</string>
+    <string name="auth_no_account">Нет аккаунта? </string>
+    <string name="auth_have_account">Уже есть аккаунт? </string>
+    <string name="auth_login_link">Войти</string>
+    <string name="auth_register_link">Зарегистрироваться</string>
+
+    <!-- Paywall -->
+    <string name="paywall_title">Оформите доступ</string>
+    <string name="paywall_price">500 ₽ / 7 дней</string>
+    <string name="paywall_pay_btn">Оплатить</string>
+    <string name="paywall_restore">Восстановить покупку</string>
+    <string name="paywall_feature_1">Безлимит лайков</string>
+    <string name="paywall_feature_2">Инкогнито режим</string>
+    <string name="paywall_feature_3">Приоритет в ленте</string>
+    <string name="paywall_feature_4">Неограниченные чаты</string>
+    <string name="paywall_feature_5">Карта рядом</string>
 </resources>

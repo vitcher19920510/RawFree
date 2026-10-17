@@ -26,6 +26,11 @@
             app:destination="@id/fragment_auth"
             app:popUpTo="@id/fragment_splash"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_paywallFragment"
+            app:destination="@id/fragment_paywall"
+            app:popUpTo="@id/fragment_splash"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <!-- 2. Онбординг -->

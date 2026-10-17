@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GigaCodeAgentSettings">
+    <option name="autoApprovedCommands">
+      <list>
+        <Execute>
+          <option name="pattern" value="Get-ChildItem &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\src\main&quot; -Recurse -File" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\build.gradle.kts&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\build.gradle.kts&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\src\main\res\values\strings.xml&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\src\main\AndroidManifest.xml&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\gradle\libs.versions.toml&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\src\main\java\online\rawfree\app\MainActivity.kt&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\src\main\res\values\themes.xml&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\src\main\res\navigation\nav_graph.xml&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\src\main\java\online\rawfree\app\data\local\entity\UserEntity.kt&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\src\main\java\online\rawfree\app\data\local\database\RawFreeDatabase.kt&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\src\main\java\online\rawfree\app\ui\splash\SplashFragment.kt&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\src\main\java\online\rawfree\app\data\local\dao\ChatDao.kt&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\src\main\java\online\rawfree\app\data\local\entity\SubscriptionEntity.kt&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\src\main\java\online\rawfree\app\data\local\entity\MessageEntity.kt&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-ChildItem &quot;C:\Users\user\AndroidStudioProjects\RawFree&quot; -Directory" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-ChildItem &quot;C:\Users\user\AndroidStudioProjects\RawFree\app\src\main\java\online\rawfree\app&quot; -Recurse -Directory" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-ChildItem &quot;C:\Users\user\AndroidStudioProjects\RawFree\backend&quot; -Recurse -File" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\backend\package.json&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\backend\docker-compose.yml&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\backend\.env&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\backend\.env.example&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-ChildItem &quot;C:\Users\user\AndroidStudioProjects\RawFree\backend\src&quot; -Directory" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-ChildItem &quot;C:\Users\user\AndroidStudioProjects\RawFree\backend\prisma&quot; -File" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\backend\src\app.module.ts&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\backend\prisma\schema.prisma&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-Content &quot;C:\Users\user\AndroidStudioProjects\RawFree\backend\src\main.ts&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-ChildItem &quot;C:\Users\user\Desktop\промпт -17 блок V2&quot; -Directory" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Get-ChildItem &quot;C:\Users\user\Desktop\промпт -17 блок V2&quot; -File" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="python3 -c &quot;import docx; doc = docx.Document(r'C:\Users\user\Desktop\промпт -17 блок V2\1791755421326-RawFree_v3_02_Blocks2-3.docx'); print('\n---'.join([p.text for p in doc.paragraphs]))&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="python3 -c &quot;import docx; doc = docx.Document(r'C:\Users\user\Desktop\промпт -17 блок V2\1791755569336-RawFree_v3_03_Blocks4-5.docx'); print('\n---'.join([p.text for p in doc.paragraphs]))&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="python3 -c &quot;import docx; doc = docx.Document(r'C:\Users\user\Desktop\промпт -17 блок V2\1791755616207-RawFree_v3_04_Blocks6-7.docx'); print('\n---'.join([p.text for p in doc.paragraphs]))&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="python3 -c &quot;import docx; doc = docx.Document(r'C:\Users\user\Desktop\промпт -17 блок V2\1791755727197-RawFree_v3_05_Blocks8-9.docx'); print('\n---'.join([p.text for p in doc.paragraphs]))&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="python3 -c &quot;import docx; doc = docx.Document(r'C:\Users\user\Desktop\промпт -17 блок V2\1791763226388-RawFree_v3_05_Blok9.docx'); print('\n---'.join([p.text for p in doc.paragraphs]))&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="python3 -c &quot;import docx; doc = docx.Document(r'C:\Users\user\Desktop\промпт -17 блок V2\1791762415724-RawFree_Blok8_D09FD180D0BED0BCD0BFD182_D0B8D181D0BFD180D0B0D0B2D0BBD0B5D0BDD0B8D18F.docx'); print('\n---'.join([p.text for p in doc.paragraphs]))&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="python3 -c &quot;import docx; doc = docx.Document(r'C:\Users\user\Desktop\промпт -17 блок V2\1791755421326-RawFree_v3_02_Blocks2-3.docx'); text = '\n---\n'.join([p.text for p in doc.paragraphs]); print(text)&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="python3 -c &quot;import docx; doc = docx.Document(r'C:\Users\user\Desktop\промпт -17 блок V2\1791755569336-RawFree_v3_03_Blocks4-5.docx'); text = '\n---\n'.join([p.text for p in doc.paragraphs]); print(text)&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="python3 -c &quot;import docx; doc = docx.Document(r'C:\Users\user\Desktop\промпт -17 блок V2\1791755616207-RawFree_v3_04_Blocks6-7.docx'); text = '\n---\n'.join([p.text for p in doc.paragraphs]); print(text)&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="python3 -c &quot;import docx; doc = docx.Document(r'C:\Users\user\Desktop\промпт -17 блок V2\1791755727197-RawFree_v3_05_Blocks8-9.docx'); text = '\n---\n'.join([p.text for p in doc.paragraphs]); print(text)&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="python3 -c &quot;import docx; doc = docx.Document(r'C:\Users\user\Desktop\промпт -17 блок V2\1791763226388-RawFree_v3_05_Blok9.docx'); text = '\n---\n'.join([p.text for p in doc.paragraphs]); print(text)&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="python3 -c &quot;import docx; doc = docx.Document(r'C:\Users\user\Desktop\промпт -17 блок V2\1791762415724-RawFree_Blok8_D09FD180D0BED0BCD0BFD182_D0B8D181D0BFD180D0B0D0B2D0BBD0B5D0BDD0B8D18F.docx'); text = '\n---\n'.join([p.text for p in doc.paragraphs]); print(text)&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="pip install *" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cd *" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="powershell -Command &quot;Expand-Archive -Path '1791755569336-RawFree_v3_03_Blocks4-5.docx' -DestinationPath 'tmp_blocks4_5' -Force; Get-Content 'tmp_blocks4_5\word\document.xml' -Encoding UTF8&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="powershell -Command &quot;Expand-Archive -Path '1791755616207-RawFree_v3_04_Blocks6-7.docx' -DestinationPath 'tmp_blocks6_7' -Force; Get-Content 'tmp_blocks6_7\word\document.xml' -Encoding UTF8&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="powershell -Command &quot;Expand-Archive -Path '1791755727197-RawFree_v3_05_Blocks8-9.docx' -DestinationPath 'tmp_blocks8_9' -Force; Get-Content 'tmp_blocks8_9\word\document.xml' -Encoding UTF8&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="powershell -Command &quot;Expand-Archive -Path '1791763226388-RawFree_v3_05_Blok9.docx' -DestinationPath 'tmp_blok9' -Force; Get-Content 'tmp_blok9\word\document.xml' -Encoding UTF8&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="powershell -Command &quot;Expand-Archive -Path '1791762415724-RawFree_Blok8_D09FD180D0BED0BCD0BFD182_D0B8D181D0BFD180D0B0D0B2D0BBD0B5D0BDD0B8D18F.docx' -DestinationPath 'tmp_blok8_design' -Force; Get-Content 'tmp_blok8_design\word\document.xml' -Encoding UTF8&quot; 2&gt;&amp;1" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Set-Location &quot;C:\Users\user\Desktop\промпт -17 блок V2&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Expand-Archive -Path '1791755569336-RawFree_v3_03_Blocks4-5.docx' -DestinationPath 'tmp_blocks4_5' -Force" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Expand-Archive -Path '1791755616207-RawFree_v3_04_Blocks6-7.docx' -DestinationPath 'tmp_blocks6_7' -Force" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Expand-Archive -Path '1791755727197-RawFree_v3_05_Blocks8-9.docx' -DestinationPath 'tmp_blocks8_9' -Force" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Expand-Archive -Path '1791763226388-RawFree_v3_05_Blok9.docx' -DestinationPath 'tmp_blok9' -Force" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Expand-Archive -Path '1791762415724-RawFree_Blok8_D09FD180D0BED0BCD0BFD182_D0B8D181D0BFD180D0B0D0B2D0BBD0B5D0BDD0B8D18F.docx' -DestinationPath 'tmp_blok8_design' -Force" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Copy-Item '1791755421326-RawFree_v3_02_Blocks2-3.docx' 'tmp23.zip'" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Copy-Item '1791755569336-RawFree_v3_03_Blocks4-5.docx' 'tmp45.zip'" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="Copy-Item '1791762415724-RawFree_Blok8_D09FD180D0BED0BCD0BFD182_D0B8D181D0BFD180D0B0D0B2D0BBD0B5D0BDD0B8D18F.docx' 'tmp8d.zip'" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cmd /c &quot;cd /d C:\Users\user\AndroidStudioProjects\RawFree\backend &amp;&amp; npm install @nestjs/schedule @nestjs/axios @types/axios&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cmd /c &quot;cd /d C:\Users\user\AndroidStudioProjects\RawFree\backend &amp;&amp; node node_modules\npm\bin\npm-cli.js install @nestjs/schedule @nestjs/axios @types/axios --save&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cmd /c &quot;cd /d C:\Users\user\AndroidStudioProjects\RawFree\backend &amp;&amp; npm.cmd install @nestjs/schedule @nestjs/axios @types/axios --save&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="powershell -ExecutionPolicy Bypass -Command &quot;Set-Location C:\Users\user\AndroidStudioProjects\RawFree\backend; &amp; 'C:\Program Files\nodejs\npm.cmd' install @nestjs/schedule @nestjs/axios @types/axios --save&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="powershell -ExecutionPolicy Bypass -Command &quot;Set-Location C:\Users\user\AndroidStudioProjects\RawFree\backend; &amp; 'C:\Program Files\nodejs\npm.cmd' install @nestjs/cors @nestjs/swagger @nestjs/microservices swagger-ui-express winston winston-daily-rotate-file --save&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="powershell -ExecutionPolicy Bypass -Command &quot;Set-Location C:\Users\user\AndroidStudioProjects\RawFree\backend; &amp; 'C:\Program Files\nodejs\npm.cmd' install @nestjs/cors @nestjs/swagger swagger-ui-express winston winston-daily-rotate-file --save&quot;" />
+        </Execute>
+        <Execute>
+          <option name="pattern" value="cmd /c &quot;cd /d C:\Users\user\AndroidStudioProjects\RawFree\backend &amp;&amp; npx nest build&quot;" />
+        </Execute>
+      </list>
+    </option>
+  </component>
+</project>

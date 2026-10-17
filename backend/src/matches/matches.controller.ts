@@ -1,5 +1,6 @@
 import { Controller, Get, HttpCode, HttpStatus, Request, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
+import { RequireSubscription } from '../common/decorators/require-subscription.decorator';
 import { MatchesService } from './matches.service';
 
 @Controller('api/v1/matches')
@@ -13,6 +14,7 @@ export class MatchesController {
    * Ошибки: 401 Unauthorized, 500 Internal Error
    */
   @Get()
+  @RequireSubscription()
   @HttpCode(HttpStatus.OK)
   async getMatches(@Request() req: any) {
     return this.matchesService.getMatches(req.user.sub);

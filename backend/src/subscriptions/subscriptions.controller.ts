@@ -40,4 +40,15 @@ export class SubscriptionsController {
   async cancelSubscription(@Request() req: any, @Body('reason') reason?: string) {
     return this.subscriptionsService.cancelSubscription(req.user.sub, reason);
   }
+
+  /**
+   * GET /api/v1/subscriptions/plans
+   * Успех: 200 OK — каталог тарифов с ценами и выгодой
+   * Ошибки: 401 Unauthorized, 500 Internal Error
+   */
+  @Get('plans')
+  @HttpCode(HttpStatus.OK)
+  async getPlans() {
+    return this.subscriptionsService.getPlans();
+  }
 }
